@@ -1,0 +1,333 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ @font-face {
+  font-family: 'AudiTypeBold';
+  src: url('fonts/AudiType-ExtendedBold.eot');
+  src: url('fonts/AudiType-ExtendedBold.eot') format('embedded-opentype'), url('fonts/AudiType-ExtendedBold.woff') format('woff'), url('fonts/AudiType-ExtendedBold.ttf') format('truetype');
+  /*font-weight: bold;*/
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AudiTypeNormal';
+  src: url('fonts/AudiType-ExtendedNormal.eot');
+  src: url('fonts/AudiType-ExtendedNormal.eot') format('embedded-opentype'), url('fonts/AudiType-ExtendedNormal.woff') format('woff'), url('fonts/AudiType-ExtendedNormal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AudiType';
+  src: url('fonts/AudiType-Normal.eot');
+  src: url('fonts/AudiType-Normal.eot') format('embedded-opentype'), url('fonts/AudiType-Normal.woff') format('woff'), url('fonts/AudiType-Normal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+html{
+  overflow: hidden;
+}
+body {
+  margin: 1em;
+  padding: 0;
+  font-family: 'AudiTypeNormal';
+  color: #244376;
+  overflow: hidden;
+  background-image: linear-gradient(#000000BF, #00000000);
+}
+
+
+#card {
+  margin: 3em auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+model-viewer {
+  position: absolute;
+    left: 50%;
+    top: 46%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.attribution {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1em;
+}
+
+.attribution h1 {
+  margin: 0 0 0.25em;
+}
+
+.attribution img {
+  opacity: 0.5;
+  height: 2em;
+}
+
+.attribution .cc {
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.5em;
+}
+.colorize{
+  position: fixed;
+  left: 0;
+  bottom: 38px;
+  width: 100%;
+  height: 70px;
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+
+.switch6 {
+  margin: 0 auto;
+  width: 167px;
+  position: relative;
+  border-radius: 100px;
+  border: 1px solid #444 !important;
+  font-size: 12px;
+  top: 21px;
+  left: -82px;
+  background-color: #212121;
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  /* pointer-events: none; */
+}
+span#exc_rad {
+  color: #fff;
+}
+.switch6-light {
+  display: block;
+  height: 35px;
+  position: relative;
+  width: 180px;
+}
+.switch6-light > span {
+  position: absolute;
+  left: -100px;
+  width: 100%;
+  margin: 0px;
+  padding-right: 100px;
+  text-align: left;
+}
+.switch6-light label, .switch6-light > span {
+  line-height: 30px;
+  vertical-align: middle;
+}
+.switch6-light > span, .switch-toggle > span {
+  color: #A2A2A2;
+}
+.switch6-light * {
+  box-sizing: border-box;
+}
+.switch6-light input {
+  position: absolute;
+  opacity: 0;
+  z-index: 5;
+}
+
+.switch6-light > span span {
+  position: absolute;
+  top: 3px;
+  left: 0px;
+  z-index: 5;
+  display: block;
+  color: #444;
+  width: 50%;
+  margin-left: 100px;
+  text-align: center;
+}
+.switch6-light > span span:last-child {
+ left: 45%;
+}
+span#exc_rad {
+  color: #fff;
+}
+.inner_btn {
+  border-radius: 100px !important;
+  background: #cdcdcd!important;
+  border: #cdcdcd!important;
+  color: #000000 !important;
+}
+
+.switch6-light a {
+  position: absolute;
+  right: 50%;
+  top: 2px;
+  z-index: 4;
+  display: block;
+  width: 50%;
+  height: 100%;
+  padding: 0px;
+}
+.info{
+  position: absolute;
+  bottom: 8px;
+  right: 36px;
+  font-size: 18px;
+}
+
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color:rgba(0,0,0,0.3);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  color: #fff;
+}
+
+/* The Close Button */
+.close {
+  color: #fff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+#progress {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #0b040b;
+  opacity: 0;
+  transition: opacity 0.3s 0.3s;
+
+}
+
+#progress.show {
+  transition-delay: 0s;
+  opacity: 1;
+}
+
+
+.centerbg {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 3px;
+  width: 100%;
+  height: 133px;
+  border-radius: 3px;
+  background-image: url("images/25fps_terrain_iphone.gif");
+  background-repeat: no-repeat;
+  transform: scaleX(1) !important;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 400px)
+{
+  .centerbg{
+    background-image: url("images/25fps_terrain_ipad.gif");
+    height: 240px;
+    background-repeat: no-repeat;
+    width: 100%;
+  }
+}
+ul.info_list {
+  position: absolute;
+  top: 50%;
+}
+.info_list  li{
+      margin: 0px;
+      list-style-type: none;
+      margin-top: 30px;
+      width:90%;
+      color: #000000;
+      font-family: 'AudiTypeBold';
+      list-style-position: outside;
+      display: inline-block;
+      padding: 0;
+      font-size: 8px;
+}
+.info_list ul li span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.info_list img{
+  vertical-align: middle;
+  padding-right: 8px;
+  width: 30px;
+  height: 30px;
+}
+
+
+.banner_txt{
+  color: #ffffff;
+    font-family: 'AudiTypeBold';
+    font-size: 20px;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    z-index: 15;
+    top: 63%;
+    left: 26%;
+    margin: -100px 0 0 -150px;
+    line-height: 30px;
+}
+
+.left {
+  width: 50%;
+}
+.right {
+  width: 50%;
+  float: right;
+  margin-top: -12%;
+}

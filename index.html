@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <title>AIS</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="demo-styles.css">
+  <link rel="stylesheet" href="style.css">
+
+
+  <script type="javascript" src="js/jquery.min.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body onload="switchar()">
+  <span class="logo">
+    <ul class="logo_list">
+      <li><img src="images/AISLogo.png"></li>
+    </ul>
+  </span>
+  <model-viewer src="" id="lazy-load" exposure="2" ar
+    ar-modes="scene-viewer quick-look" onload="changeModelColor(event)" ar-placement="wall" camera-controls touch-action="pan-y" ar-scale="30%"
+    disable-tap touch-action="pan-x" camera-orbit="0deg 75deg 30m" max-camera-orbit="Infinity 80.5deg 80deg"
+    field-of-view="50deg" max-field-of-view="45deg" min-field-of-view="-130deg" interaction-prompt="auto"
+    interaction-policy="always-allow" interaction-prompt-style="wiggle" shadow-intensity="5"
+    quick-look-browsers="safari chrome" background-color="#ffffff" data-js-focus-visible xr-environment>
+
+    <button slot="ar-button" style="background-color: #bb0a30;
+  height: 44px;
+  width: 105px;
+  color: #ffffff;
+  border: none;
+  float: right;
+  position: absolute;
+  top: 38px;
+  z-index: 10000;
+  right: 36px;">
+      Activate AR
+    </button>
+
+    <div id="lazy-load-poster" slot="poster"></div>
+    <div id="button-load" slot="poster">Loading Assets</div>
+    
+  </model-viewer>
+
+</body>
+
+
+
+<script >
+
+  var url = window.location.href;
+  console.log(url);
+
+  function getUrlQueryParams() {
+    // Sample URL
+   
+    // Split the URL after the "?"
+    var params = url.split("?")[1];
+
+    // Split the parameters by "&"
+    var paramArray = params.split("&");
+
+    // Loop through the parameters using a for loop
+    for (var i = 0; i < paramArray.length; i++) {
+      var param = paramArray[i].split("=");
+      console.log(paramArray);
+    }
+    return paramArray[0]
+
+  }
+
+  var queryParams = getUrlQueryParams();
+
+
+  function switchar() {
+
+
+    document.getElementById('lazy-load').src = "https://s3.ap-south-1.amazonaws.com/demo.hnscloud.com/AIS/AIS_config/" + queryParams + ".glb";
+    console.log(queryParams);
+  }
+
+
+  const modelViewerTexture = document.querySelector("model-viewer#lazy-load");
+  modelViewerTexture.addEventListener("load", (ev) => {
+
+
+    let material = modelViewerTexture.model.materials[0];
+    //console.log(material)
+    let modifiedUrl = url.split('?')[1]
+    let modifiedUrlPath = 'color/'+ modifiedUrl.split('&')[1] + '.jpg';
+    // console.log(modifiedUrl);
+    console.log(modifiedUrlPath);
+    let createAndApplyTexture = async (channel, event) => {
+      let texture = await modelViewerTexture.createTexture(modifiedUrlPath);
+      material.pbrMetallicRoughness[channel].setTexture(texture);
+    }
+
+    document.querySelector('model-viewer#lazy-load').createTexture('load', (event) => {
+      createAndApplyTexture ('baseColorTexture', event);
+     // console.log(event.target.value)
+
+    });
+    
+  })
+  //console.log("check")
+  //console.log(modelViewerTexture)
+  document.querySelector("#lazy-load").addEventListener('ar-status', (event) => {
+    if (event.detail.status === 'failed') {
+      const error = document.querySelector("#error");
+      error.classList.remove('hide');
+      error.addEventListener('transitionend', (event) => {
+        error.classList.add('hide');
+      });
+    }
+    
+  });
+
+  
+</script>
+
+</html>
